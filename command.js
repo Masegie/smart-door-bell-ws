@@ -11,7 +11,7 @@ const commands = {
     const data = {
       status: 'success',
       type: 'notification',
-      content: `You\'ve been registered as client ${id}`,
+      content: { id },
     };
 
     ws.send(JSON.stringify(data));
