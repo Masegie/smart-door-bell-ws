@@ -1,8 +1,5 @@
 const client = require('./client');
-const {
-  clientExists,
-  broadcastToClusters,
-} = require('./helper');
+const helper = require('./helper');
 
 const commands = {
   register(ws, payload) {
@@ -18,8 +15,31 @@ const commands = {
     console.log(`Client ${id} has been registered`);
   },
 
-  soundOn(ws) {
-    
+  soundOn(ws, { id }) {
+    if (!client.clientExists(id)) {
+      const data = {
+        status: 'error',
+        type: 'unauthorized',
+        content: 'soundOn',
+      };
+
+      ws.send(JSON.stringify(data));
+      console.log(`soundOn request failed. Client unauthorized`);
+    }
+
+    const broadcastData = {
+      type: 'soundOn',
+    };
+
+    const data = {
+      status: 'success',
+      type: 'notification',
+      type: 'soundOn',
+    };
+
+    client.clusterBroadcast(data);
+    ws.send(JSON.stringify(data));
+    console.log('soundOn request broadcasted');
   },
 };
 
