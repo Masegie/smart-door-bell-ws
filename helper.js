@@ -11,17 +11,7 @@ const routeCommand = (ws, request) => {
   command[type](ws, content);
 };
 
-const clientExists = (ws) => {
-  console.log(ws);
-}
-
-const broadcastToClusters = (clusters, payload) => {
-  console.log(clusters);
-};
-
 module.exports = {
   parsePayload,
   routeCommand,
-  clientExists,
-  broadcastToClusters,
 };

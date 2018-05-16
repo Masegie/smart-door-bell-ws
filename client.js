@@ -48,6 +48,30 @@ const clients = {
   getClients() {
     return this.data.filter(item => item.type === 'client');
   },
+
+  clientExists(id) {
+    return this.getClients()
+      .filter(item => item.id === id)
+      .length === 1;
+  },
+
+  clusterExists(id) {
+    return this.getClusters()
+      .filter(item => item.id === id)
+      .length === 1;
+  },
+
+  clientBroadcast(payload) {
+    this.getClients().forEach((item) => {
+      item.conn.send(JSON.stringify(payload));
+    });
+  },
+
+  clusterBroadcast(payload) {
+    this.getClusters().forEach((item) => {
+      item.conn.send(JSON.stringify(payload));
+    });
+  },
 };
 
 module.exports = clients;
