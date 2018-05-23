@@ -94,7 +94,7 @@ const commands = {
       type: 'buttonPressed',
     };
 
-    client.clusterBroadcast(data);
+    client.clientBroadcast(data);
     ws.send(JSON.stringify(data));
     console.log('buttonPressed request broadcasted');
   },
