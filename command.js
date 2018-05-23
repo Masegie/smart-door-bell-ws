@@ -42,7 +42,7 @@ const commands = {
     console.log('soundOn request broadcasted');
   },
 
-  setText(ws, { id, content }) {
+  setText(ws, { id, text }) {
     if (!client.clientExists(id)) {
       const data = {
         status: 'error',
@@ -56,7 +56,9 @@ const commands = {
 
     const broadcastData = {
       type: 'setText',
-      content,
+      content: {
+        text,
+      },
     };
 
     const data = {
