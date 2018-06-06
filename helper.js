@@ -7,8 +7,13 @@ const parsePayload = (payload) => {
 
 const routeCommand = (ws, request) => {
   const { type, content} = request;
+  const commandFunc = command[type];
 
-  command[type](ws, content);
+  if (typeof commandFunc === 'undefined') {
+    console.log('Bad request');
+  } else {
+    commandFunc(ws, content);
+  }
 };
 
 module.exports = {
