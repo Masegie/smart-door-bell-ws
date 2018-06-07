@@ -9,6 +9,7 @@ Parameter:
 {
   "type": "register",
   "content": {
+    "id": 88,
     "type": "client"
   }
 }
@@ -17,8 +18,7 @@ Response:
 - content.id = Returned ID from server. Required for future requests.
 ```json
 {
-  "status": "success",
-  "type": "notification",
+  "type": "register",
   "content": {
     "id": 52
   }
@@ -40,8 +40,10 @@ Parameter:
 Response:
 ```json
 {
-  "status": "success",
-  "type": "soundOn"
+  "type": "soundOn",
+  "content": {
+    "msg": "success"
+  }
 }
 ```
 
@@ -61,8 +63,10 @@ Parameter:
 Response:
 ```json
 {
-  "status": "success",
-  "type": "setText"
+  "type": "setText",
+  "content": {
+    "msg": "success"
+  }
 }
 ```
 
@@ -80,7 +84,9 @@ Parameter:
 Response:
 ```json
 {
-  "status": "success",
-  "type": "buttonPressed"
+  "type": "buttonPressed",
+  "content": {
+    "msg": "success"
+  }
 }
 ```
